@@ -2,8 +2,8 @@ body {
   font-family: 'Asap', sans-serif;
 }
 
-.nav-item {
-  text-transform: uppercase;
+.nav-item a {
+  text-transform: capitalize;
 }
 
 .alert-danger{
