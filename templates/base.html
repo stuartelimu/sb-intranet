@@ -165,10 +165,11 @@
     </script>
 
     <script>
+      from = ""
       Email.send({
-          Host : {{host}},
-          Username : {{user}},
-          Password : {{password}},
+          Host : `{{host}}`,
+          Username : `{{user}}`,
+          Password : `{{password}}`,
           To : 'stuartelimu@gmail.com',
           From : "you@isp.com",
           Subject : "This is the subject",

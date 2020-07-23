@@ -86,6 +86,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # context processor for notification
                 'products.context_processors.get_notification',
+                # context processor for settings
+                'src.context_processors.get_settings',
             ],
         },
     },
