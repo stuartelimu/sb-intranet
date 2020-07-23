@@ -127,24 +127,20 @@
           <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                      <label for="id_name">Name</label>
+                      <input type="text" class="form-control" id="id_name" placeholder="1234 Main St">
                     </div>
                     <div class="form-group">
-                      <label for="inputAddress">Name</label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="form-group">
-                      <label for="inputAddress2">Subject</label>
-                      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                      <label for="id_subject">Subject</label>
+                      <input type="text" class="form-control" id="id_subject" placeholder="Apartment, studio, or floor">
                     </div>
                     
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Question</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                        <label for="id_qn">Question</label>
+                        <textarea class="form-control" id="id_qn" rows="6"></textarea>
                       </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
-                  </form>
+                    <button type="submit" name="submit" class="btn btn-primary">Send</button>
+                </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -165,18 +161,27 @@
     </script>
 
     <script>
-      from = ""
-      Email.send({
-          Host : `{{host}}`,
-          Username : `{{user}}`,
-          Password : `{{password}}`,
-          To : 'stuartelimu@gmail.com',
-          From : "you@isp.com",
-          Subject : "This is the subject",
-          Body : "And this is the body"
-      }).then(
-        message => alert(message)
-      );
+      from = `{{ request.user.email}}`
+      subject = document.querySelector('#id_subject')
+      body = document.querySelector('#id_qn')
+
+      btn = document.querySelector('#id_submit');
+
+      btn.addEventListener('click', function() {
+          Email.send({
+            Host : `{{host}}`,
+            Username : `{{user}}`,
+            Password : `{{password}}`,
+            To : 'stuartelimu@gmail.com',
+            From : from,
+            Subject : subject,
+            Body : body
+        }).then(
+          message => alert(message)
+        );
+      })
+
+      
     </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
