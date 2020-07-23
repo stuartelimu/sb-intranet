@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
+
+        <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">My Profile</h3>
+              <form action="." method="post">
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+              {% endfor %}
+            
+              {% if user_form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in user_form.non_field_errors %}
+                    {{ error }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              {% if profile_form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in profile_form.non_field_errors %}
+                    {{ error }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            
+              {% for field in user_form.visible_fields %}
+                <div class="form-group">
+                    {% csrf_token %}
+                  {{ field.label_tag }}
+            
+                  {% if user_form.is_bound %}
+                    {% if field.errors %}
+                      {% render_field field class="form-control is-invalid" %}
+                      {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      {% render_field field class="form-control is-valid" %}
+                    {% endif %}
+                  {% else %}
+                    {% render_field field class="form-control" %}
+                  {% endif %}
+            
+                  {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+              <div class="form-group">
+                <label for="id_team">Team</label>
+                <select class="form-control" id="id_team" name="team">
+                    <option value="OB">OUTBOUND</option>
+                    <option value="WI">WALK IN</option>
+                    <option value="FD">FOOD</option>
+                    <option value="IB">INBOUND</option>
+                    <option value="SM">SOCIAL MEDIA</option>
+                    <option value="OT" selected="">OTHER</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                  <label for="id_avatar">Avatar</label>
+                  <div class="mb-1" style="width: 200px; height: 200px;">
+                    <img src="{{user.profile.avatar.url}}" alt="avatar" class="img-thumbnail">
+                  </div>
+                  <input type="file" id="id_avatar" name="avatar" accept="image/*">
+                  
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Update</button>
+              
+              </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

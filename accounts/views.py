@@ -33,9 +33,21 @@ class ProfileView(LoginRequiredMixin, View):
     profile_form = ProfileForm
 
     def get(self, request, *args, **kwargs):
-        user_form = self.user_form(initial=request.user)
-        profile_form = self.profile_form(initial=request.user.profile)
+        user_form = self.user_form(instance=request.user)
+        profile_form = self.profile_form(instance=request.user.profile)
         return render(request, self.template_name, {'user_form': user_form, 'profile_form':profile_form})
 
-    
+    def post(self, request, *args, **kwargs):
+        user_form = self.user_form(request.POST, instance=request.user)
+        profile_form = self.profile_form(request.POST, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('profile')
+        else:
+            messages.error(request, _('Please correct the error below.'))
+
+        return render(request, self.template_name, {'user_form': user_form, 'profile_form':profile_form})
 
