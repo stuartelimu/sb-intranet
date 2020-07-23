@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -153,10 +153,10 @@ AUTHENTICATION_BACKENDS = [
 
 ]
 
-# SEND_GRID_API_KEY = config('SEND_GRID_API_KEY')
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-# EMAIL_PORT = config('EMAIL_PORT', cast=int)
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-# EMAIL_BACKEND = config('EMAIL_BACKEND')
+SEND_GRID_API_KEY = config('SEND_GRID_API_KEY')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_BACKEND = config('EMAIL_BACKEND')
