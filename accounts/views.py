@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.http import HttpResponse
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UserForm, ProfileForm
+from .models import User, Profile
 
 
 class RegistrationView(View):
@@ -23,4 +25,17 @@ class RegistrationView(View):
             return redirect('login')
         else:
             return render(request, self.template_name, {'form': form})
+
+
+class ProfileView(LoginRequiredMixin, View):
+    template_name = 'profile.html'
+    user_form = UserForm
+    profile_form = ProfileForm
+
+    def get(self, request, *args, **kwargs):
+        user_form = self.user_form(initial=request.user)
+        profile_form = self.profile_form(initial=request.user.profile)
+        return render(request, self.template_name, {'user_form': user_form, 'profile_form':profile_form})
+
+    
 
