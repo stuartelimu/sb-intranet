@@ -96,13 +96,24 @@
           {% endif %}
 
           {% for message in messages %}
+          <div class="container mt-2">
             <div class="alert {{ message.tags }} alert-dismissible" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
               {{ message }}
             </div>
+          </div>
           {% endfor %}
+          
+          <div id="message-alert" class="container mt-2">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong id="message">You should check in on some of those fields below.</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
 
           
 
@@ -128,22 +139,19 @@
                 <form>
                     <div class="form-group">
                       <label for="id_name">Name</label>
-                      <input type="text" class="form-control" id="id_name" placeholder="1234 Main St">
+                      <input type="text" class="form-control" id="id_name">
                     </div>
                     <div class="form-group">
                       <label for="id_subject">Subject</label>
-                      <input type="text" class="form-control" id="id_subject" placeholder="Apartment, studio, or floor">
+                      <input type="text" class="form-control" id="id_subject">
                     </div>
                     
                     <div class="form-group">
                         <label for="id_qn">Question</label>
                         <textarea class="form-control" id="id_qn" rows="6"></textarea>
                       </div>
-                    <button type="submit" name="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" id="id_submit" name="submit" class="btn btn-primary">Send</button>
                 </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           </div>
         </div>
       </div>
@@ -161,24 +169,41 @@
     </script>
 
     <script>
-      from = `{{ request.user.email}}`
-      subject = document.querySelector('#id_subject')
-      body = document.querySelector('#id_qn')
+      const from = "{{request.user.email}}"
+      const subject = document.querySelector('#id_subject').textContent;
+      const body = document.querySelector('#id_qn').textContent;
 
-      btn = document.querySelector('#id_submit');
+      const btn = document.querySelector('#id_submit');
 
-      btn.addEventListener('click', function() {
+      const al = document.querySelector('#message-alert');
+      const msg  = document.querySelector('#message');
+
+      al.style.display = "none";
+
+      btn.addEventListener('click', function(e) {
+          e.preventDefault();
           Email.send({
-            Host : `{{host}}`,
-            Username : `{{user}}`,
-            Password : `{{password}}`,
-            To : 'stuartelimu@gmail.com',
+            Host : "smtp.sendgrid.net",
+            Username : "stue",
+            Password : "pirate2020",
+            To : 'sempas93@gmail.com',
             From : from,
             Subject : subject,
             Body : body
         }).then(
-          message => alert(message)
-        );
+          $('#exampleModal').modal('hide')
+        ).then(message => {
+          console.log(message)
+          if (message === 'OK') {
+            msg.textContent = "Your request has been sent successfully";
+            al.style.display = 'block';
+          } else {
+            msg.textContent = message;
+            al.classList.remove('alert-success');
+            al.classList.add('alert-danger');
+            al.style.display = 'block';
+          }
+        });
       })
 
       
