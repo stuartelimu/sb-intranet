@@ -6,9 +6,6 @@ from django.dispatch import receiver
 class User(AbstractUser):
     email = models.EmailField()
 
-    def logged_in(self):
-        return self.last_login
-
 
 class Profile(models.Model):
 
