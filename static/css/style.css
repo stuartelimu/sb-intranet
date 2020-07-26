@@ -51,7 +51,7 @@ body {
   width: 100%;
   color: #fff;
   /* animation: blinkingBackground .8s infinite; */
-  background-color: #ff8800;
+  background-color: #025073;
 }
 @keyframes blinkingBackground{
   0%		{ border-color: #fff;}
