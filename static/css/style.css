@@ -47,11 +47,11 @@ body {
   background: #ff8800;
 }
 
-.alert-danger{
+.alert-sb{
   width: 100%;
   color: #fff;
-  animation: blinkingBackground .8s infinite;
-  background-color: #025073;
+  /* animation: blinkingBackground .8s infinite; */
+  background-color: #ff8800;
 }
 @keyframes blinkingBackground{
   0%		{ border-color: #fff;}

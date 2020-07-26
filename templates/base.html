@@ -78,7 +78,7 @@
 
   {% if request.user.is_authenticated %}
   <div class="container mt-2">
-    <div class="alert alert-{% if notification.resolved %}success{% else %}danger{% endif%}" role="alert">
+    <div class="alert alert-{% if notification.resolved %}success{% else %}sb{% endif%}" role="alert">
       <h4 class="alert-heading">{{notification.title}}</h4>
       <p>{{notification.content|safe}}</p>
     </div>
