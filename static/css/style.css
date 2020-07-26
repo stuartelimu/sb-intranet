@@ -1,10 +1,16 @@
 body {
   font-family: 'Asap', sans-serif;
+  background: rgba(0, 0, 0, 0) url(../img/doodles.png) repeat scroll 0% 0%;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 100px;
 }
 
 .nav-item a {
   text-transform: capitalize;
 }
+
+
 
 .alert-danger{
   width: 100%;
@@ -15,4 +21,10 @@ body {
 @keyframes blinkingBackground{
   0%		{ border-color: #fff;}
   100%	        { background-color: #025073; color: #fff; border-color: #025073;}
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
