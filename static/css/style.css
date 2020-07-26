@@ -10,7 +10,42 @@ body {
   text-transform: capitalize;
 }
 
+.nav-link:hover {
+  color: rgba(255, 136, 0, 1) !important;
+}
 
+
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: rgba(255, 136, 0, 1) !important;
+}
+
+.btn-outline-safeboda {
+	color: rgba(255, 136, 0, 1);
+	border-color: rgba(255, 136, 0, 1);
+}
+
+.btn-outline-safeboda:hover {
+	color: #fff;
+	background-color: rgba(255, 136, 0, 1);
+	border-color: rgba(255, 136, 0, 1);
+}
+
+.btn-safeboda {
+	color: #fff;
+	background-color: #ff8800;
+	border-color: #ff8800;
+}
+
+.btn-safeboda:hover {
+	color: #fff;
+	background-color: #ff8800;
+	border-color: #ff8800;
+}
+
+.bg-safeboda {
+  background: #ff8800;
+}
 
 .alert-danger{
   width: 100%;
@@ -27,4 +62,8 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+footer a {
+  color: #ff8800;
 }
