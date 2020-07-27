@@ -50,7 +50,7 @@ body {
 .alert-sb{
   width: 100%;
   color: #fff;
-  /* animation: blinkingBackground .8s infinite; */
+  animation: blinkingBackground .8s infinite;
   background-color: #025073;
 }
 @keyframes blinkingBackground{
