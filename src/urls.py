@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from docs.views import DocumentListView
-from products.views import ProductListView, QuestionList
+from products.views import ProductListView, QuestionList, TroubleshootList
 from contents.views import search
 from .views import Index
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('', Index.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('faq', QuestionList.as_view(), name='faq'),
+    path('troubleshoots/', TroubleshootList.as_view(), name='troubleshoots'),
     path('files/', DocumentListView.as_view(), name='files'),
     path('products/', ProductListView.as_view(), name='products'),
     path('search/', search, name='search'),

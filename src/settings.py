@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from decouple import config
 import django_heroku
+import cloudinary
 # messages settings
 
 from django.contrib.messages import constants as messages
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'tinymce',
     'storages',
+    'cloudinary',
 
     'accounts',
     'docs',
@@ -182,4 +184,10 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 EMAIL_BACKEND = config('EMAIL_BACKEND')
+
+cloudinary.config(
+    cloud_name = config('CLOUDINARY_CLOUD_NAME'),
+    api_key = config('CLOUDINARY_API_KEY'),
+    api_secret = config('CLOUDINARY_API_SECRET')
+)
 

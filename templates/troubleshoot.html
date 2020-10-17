@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+                <h3>Product Troubleshoots.</h3>
+            {% for troubleshoot in troubleshoots %}
+            <details class="card p-3 shadow">
+                <summary class="mt-2">{{troubleshoot.title}}</summary>
+                <p>{{troubleshoot.description|safe}}</p>
+            </details>
+            {% endfor %}
+            
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
