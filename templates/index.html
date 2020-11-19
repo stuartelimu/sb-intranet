@@ -60,7 +60,7 @@
         <tbody>
           {% for board in boards  %}
           <tr>
-            <th scope="row">{{ forloop.counter }}</th>
+            <th scope="row"><img src="{{ board.user.profile.avatar.url }}" style="width: 30px;" alt=""></th>
             <td>{{ board.user.username }}</td>
             <td>{{ board.achievement|truncatewords:5 }}</td>
           </tr>
